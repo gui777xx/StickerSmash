@@ -6,22 +6,42 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#ffd33d",
+        headerStyle:{ 
+        backgroundColor :"#25292E"
+      },
+        headerShadowVisible: false,
+        headerTintColor: "#fff",
+        tabBarStyle: {
+          backgroundColor: "#25292e",
+        },
       }}
     >
-
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home"
-      tabBarIcon: ({ color, focused }) => {
-            <Ionicons name={focused ? 'home-sharp' : 'home-outline'}
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? 'home-sharp' : 'home-outline'}
               color={color}
               size={24}
-            />;
-          },
+            />
+          ),
         }}
       />
-      <Tabs.Screen name="about" options={{ title: 'Sobre' }} />
+      <Tabs.Screen
+        name="about"
+        options={{
+          title: "Sobre",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? 'information-circle' : 'information-circle-outline'}
+              color={color}
+              size={24}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
