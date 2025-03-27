@@ -5,15 +5,17 @@ import Button from "@/components/Button";
 import * as ImagePicker from 'expo-image-picker';
 import IconButton from "@/components/IconButton";
 import CircleButton from "@/components/CircleButton";
+import EmojiPicker from "@/components/EmojiPicker";
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
 
 export default function Index() {
-    const [selectedImage, setSelectedImage] = 
+  const [selectedImage, setSelectedImage] =
     useState<string | undefined>(
       undefined
     );
-    const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
+  const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
+  const [IsModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -34,7 +36,11 @@ export default function Index() {
   }
 
   const onAddSticker = () => {
+    setIsModalVisible(true);
+  }
 
+  const onModalClose = () => {
+    setIsModalVisible(false);
   }
 
   const onSaveImageAsync = () => {
@@ -45,26 +51,31 @@ export default function Index() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer imgSource={PlaceholderImage}
-         selectedImage={selectedImage} />
+          selectedImage={selectedImage} />
       </View>
       {showAppOptions ? (
-       <View style={styles.optionsContainer}>
-        <View style={styles.optionRow}>
-          <IconButton icon="refresh" label="Resetar" onPress={onReset} />
-          <CircleButton onPress={onAddSticker} />
-          <IconButton icon="save-alt" label="Salvar" onPress={onSaveImageAsync} />
+        <View style={styles.optionsContainer}>
+          <View style={styles.optionRow}>
+            <IconButton icon="refresh" label="Resetar" onPress={onReset} />
+            <CircleButton onPress={onAddSticker} />
+            <IconButton icon="save-alt" label="Salvar" onPress={onSaveImageAsync} />
           </View>
         </View>
-      ) : (   
-      <View style={styles.footerContainer}>
-        <Button
-         theme="primary"
-        label="Escolher uma foto"
-        onPress={pickImageAsync} 
-        />
-        <Button label="Usar esta foto" onPress={() => setShowAppOptions(true)} />
-      </View>
+      ) : (
+        <View style={styles.footerContainer}>
+          <Button
+            theme="primary"
+            label="Escolher uma foto"
+            onPress={pickImageAsync}
+          />
+          <Button label="Usar esta foto"
+            onPress={() => setShowAppOptions(true)}
+          />
+        </View>
       )}
+      <EmojiPicker isVisible={IsModalVisible}onClose={onModalClose}>
+        
+      </EmojiPicker>
     </View>
   );
 }
@@ -79,7 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   footerContainer: {
-    flex: 1/3,
+    flex: 1 / 3,
     alignItems: 'center',
   },
   optionsContainer: {
