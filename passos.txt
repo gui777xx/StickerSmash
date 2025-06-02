@@ -9,4 +9,6 @@ cd StickerSmash
 
 npx expo start --localhost --android
 
+npm install dom-to-image
+
 npm run reset-project
