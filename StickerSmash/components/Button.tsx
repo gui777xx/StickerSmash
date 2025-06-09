@@ -13,7 +13,7 @@ export default function Button({ label, theme, onPress }: Props) {
       <View
         style={[
           styles.buttonContainer,
-          { borderWidth: 4, borderColor: "#ffd33d", borderRadius: 18 },
+          { borderWidth: 4, borderColor: "#8B0000", borderRadius: 18 },
         ]}
       >
         <Pressable
@@ -33,6 +33,7 @@ export default function Button({ label, theme, onPress }: Props) {
       </View>
     );
   }
+
   return (
     <View style={styles.buttonContainer}>
       <Pressable style={styles.button} onPress={onPress}>
@@ -58,12 +59,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    backgroundColor: "#25292e",
+  },
+  buttonIcon: {
+    paddingRight: 8,
   },
   buttonLabel: {
     color: "#fff",
     fontSize: 16,
-  },
-  buttonIcon: {
-    paddingRight: 8,
   },
 });

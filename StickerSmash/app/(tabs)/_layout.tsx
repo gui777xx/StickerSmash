@@ -5,14 +5,16 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#ffd33d",
+        tabBarActiveTintColor: "#8B0000", // Vermelho vinho para o item ativo
+        tabBarInactiveTintColor: "#a1a1a1", // Cinza para itens inativos
         headerStyle: {
-          backgroundColor: "#25292e",
+          backgroundColor: "#1c1c1e", // Fundo cinza escuro para o cabeçalho
         },
         headerShadowVisible: false,
-        headerTintColor: "#fff",
+        headerTintColor: "#8B0000", // Vermelho vinho para o texto do cabeçalho
         tabBarStyle: {
-          backgroundColor: "#25292e",
+          backgroundColor: "#1c1c1e", // Fundo cinza escuro para a barra de navegação
+          borderTopWidth: 0, // Remove a borda superior
         },
       }}
     >
@@ -23,23 +25,21 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "home-sharp" : "home-outline"}
-              color={color}
               size={24}
+              color={color}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="about"
+        name="settings"
         options={{
-          title: "Sobre",
+          title: "Configurações",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={
-                focused ? "information-circle" : "information-circle-outline"
-              }
-              color={color}
+              name={focused ? "settings-sharp" : "settings-outline"}
               size={24}
+              color={color}
             />
           ),
         }}

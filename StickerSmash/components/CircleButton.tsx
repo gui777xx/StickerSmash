@@ -8,7 +8,13 @@ type Props = {
 export default function CircleButton({ onPress }: Props) {
   return (
     <View style={styles.circleButtonContainer}>
-      <Pressable style={styles.circleButton} onPress={onPress}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.circleButton,
+          pressed && styles.circleButtonPressed,
+        ]}
+        onPress={onPress}
+      >
         <MaterialIcons name="add" size={38} color="#25292e" />
       </Pressable>
     </View>
@@ -23,13 +29,20 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: "#ffd33d",
     borderRadius: 42,
-    padding: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5, // Para Android
   },
   circleButton: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 42,
     backgroundColor: "#fff",
+    borderRadius: 42,
+  },
+  circleButtonPressed: {
+    backgroundColor: "#f0f0f0",
   },
 });
